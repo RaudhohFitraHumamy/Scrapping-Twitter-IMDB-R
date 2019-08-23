@@ -1,0 +1,52 @@
+---
+title: "Web Scraping With R"
+output: html_notebook
+author : "RaudhohFitrah"
+---
+
+This notebook was made to practice about basic Web Scraping from twitter. Using most popular hashtag as keyword suggested by Twitter.I am open for discussion :)
+
+
+Step 1 : Load library needed
+```{r}
+library(rtweet)
+```
+
+
+Step 2 : Setup customer secret key and access token  (Replace with yours)
+```{r}
+token <- create_token(
+  consumer_key = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  consumer_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  access_token = "xxxxx-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+  access_secret = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+```
+
+Step 3 : Define (Developer) Username
+```{r}
+my_username : 'raudhohfitra_h'
+
+```
+
+Step 4 : Scrapping process using "TAEMINinJKT" which has 22.1 K Tweets by 23/8/19
+```{r}
+tweet <- search_tweets(q = "#TAEMINinJKT", n = 1000)
+```
+
+Step 5 : Inspect scrapping result (I)
+```{r}
+colnames(tweet)
+```
+
+
+6. Inspect scrapping result 
+```{r}
+res <- tweet[,c("created_at", "screen_name", "text", "country","place_full_name")]
+
+head(res)
+
+```
+7. And Finally export to CSV
+```{r}
+write.csv(res, "Taemin.csv")
+```
